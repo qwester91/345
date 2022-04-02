@@ -1,4 +1,4 @@
-package by.it_academy.jd2.sorts.Comparators;
+package by.it_academy.jd2.sorts.service.comparators;
 
 import java.util.Comparator;
 import java.util.Map;

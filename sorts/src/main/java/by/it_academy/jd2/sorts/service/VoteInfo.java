@@ -1,4 +1,4 @@
-package by.it_academy.jd2.sorts.dto;
+package by.it_academy.jd2.sorts.service;
 
 import java.text.DateFormat;
 import java.util.*;

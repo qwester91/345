@@ -1,9 +1,7 @@
 package by.it_academy.jd2.sorts.servlets;
 
-import by.it_academy.jd2.sorts.Sorts;
-import by.it_academy.jd2.sorts.SortsInfo;
-import by.it_academy.jd2.sorts.dto.VoteResultsMusicians;
-import by.it_academy.jd2.sorts.dto.VoteResultsStyles;
+import by.it_academy.jd2.sorts.service.sorters.Sorts;
+import by.it_academy.jd2.sorts.service.VoteResultsStyles;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

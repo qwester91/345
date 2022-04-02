@@ -1,4 +1,4 @@
-package by.it_academy.jd2.sorts.dto;
+package by.it_academy.jd2.sorts.service;
 
 import java.util.HashMap;
 import java.util.Map;

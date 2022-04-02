@@ -1,7 +1,6 @@
-package by.it_academy.jd2.sorts;
+package by.it_academy.jd2.sorts.service.sorters;
 
-import by.it_academy.jd2.sorts.Comparators.MapComparator;
-import by.it_academy.jd2.sorts.Comparators.MapComparatorInfo;
+import by.it_academy.jd2.sorts.service.comparators.MapComparatorInfo;
 
 import java.util.*;
 
