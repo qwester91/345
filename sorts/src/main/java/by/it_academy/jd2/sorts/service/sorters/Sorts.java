@@ -9,12 +9,12 @@ import java.util.Map;
 
 public class Sorts {
 
-        public List<Map.Entry<String, Integer>> sortMap(Map<String, Integer> choose) {
+        public List<Map.Entry<Integer, Integer>> sortMap(Map<Integer, Integer> choose) {
 
-            List<Map.Entry<String, Integer>> entries = new ArrayList<>(choose.entrySet());
+            List<Map.Entry<Integer, Integer>> entries = new ArrayList<>(choose.entrySet());
 
-            Comparator<Map.Entry<String, Integer>> comparator = new MapComparator();
-            Comparator<Map.Entry<String, Integer>> reversed = comparator.reversed();
+            Comparator<Map.Entry<Integer, Integer>> comparator = new MapComparator();
+            Comparator<Map.Entry<Integer, Integer>> reversed = comparator.reversed();
             entries.sort(reversed);
             return entries;
         }

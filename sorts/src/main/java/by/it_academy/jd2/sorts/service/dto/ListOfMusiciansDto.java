@@ -23,4 +23,10 @@ public class ListOfMusiciansDto {
     public void addMusiciants(String musiciants) {
         this.musiciants.add(musiciants);
     }
+
+    public boolean isExist(int index){
+        int size = musiciants.size();
+        return index >= 0 && index < size;
+
+    }
 }

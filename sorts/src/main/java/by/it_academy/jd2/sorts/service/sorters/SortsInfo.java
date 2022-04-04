@@ -6,12 +6,12 @@ import java.util.*;
 
 public class SortsInfo {
 
-        public List<Map.Entry<String, Long>> sortMap(Map<String, Long> choose) {
+        public List<Map.Entry<Long, String>> sortMap(Map<Long, String> choose) {
 
-            List<Map.Entry<String, Long>> entries = new ArrayList<>(choose.entrySet());
+            List<Map.Entry<Long, String>> entries = new ArrayList<>(choose.entrySet());
 
-            Comparator<Map.Entry<String, Long>> comparator = new MapComparatorInfo();
-            Comparator<Map.Entry<String, Long>> reversed = comparator.reversed();
+            Comparator<Map.Entry<Long, String>> comparator = new MapComparatorInfo();
+            Comparator<Map.Entry<Long, String>> reversed = comparator.reversed();
             entries.sort(reversed);
             return entries;
         }

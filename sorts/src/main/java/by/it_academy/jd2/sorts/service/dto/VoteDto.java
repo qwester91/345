@@ -37,4 +37,12 @@ public class VoteDto {
     public void setInfo(String info) {
         this.info = info;
     }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
 }

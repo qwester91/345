@@ -1,7 +1,7 @@
 package by.it_academy.jd2.sorts.servlets;
 
 import by.it_academy.jd2.sorts.service.sorters.SortsInfo;
-import by.it_academy.jd2.sorts.service.VoteInfo;
+import by.it_academy.jd2.sorts.service.InfoService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,16 +20,12 @@ public class TopInfo extends HttpServlet {
     protected void doGet(HttpServletRequest req,
                          HttpServletResponse resp)
             throws ServletException, IOException {
-        Map<String, Long> mapResultsInfo =
-                VoteInfo.resultInfo.getMapResultsInfo();;
-
-        SortsInfo sorts = new SortsInfo();
-        List<Map.Entry<String, Long>> entries = sorts.sortMap(mapResultsInfo);
-
+        InfoService infoService = new InfoService();
         resp.setContentType("text/html; charset=UTF-8");
+
         PrintWriter writer = resp.getWriter();
-        for (Map.Entry<String, Long> entry : entries) {
-            writer.write(entry.getKey());
+        for (String info : infoService.getInfo()) {
+            writer.write("<p>" + info + "</p></br>");
 
         }
     }

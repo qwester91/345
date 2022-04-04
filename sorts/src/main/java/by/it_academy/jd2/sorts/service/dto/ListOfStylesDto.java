@@ -24,4 +24,9 @@ public class ListOfStylesDto {
     public void addStyles(String styles) {
         this.styles.add(styles);
     }
+
+    public boolean isExist(int index){
+        int size = styles.size();
+        return index >= 0 && index < size;
+    }
 }
