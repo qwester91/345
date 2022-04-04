@@ -48,11 +48,11 @@ public class VoteService {
 
         synchronized (sync){
             Integer orDefaultMusician = musicantsVote.getOrDefault(vote.getMusician(), 0);
-            musicantsVote.put(vote.getMusician(), orDefaultMusician);
+            musicantsVote.put(vote.getMusician(), ++orDefaultMusician);
 
             for (int style : vote.getStyles()) {
                 Integer orDefaultStyle = stylesVote.getOrDefault(style, 0);
-                stylesVote.put(style, orDefaultStyle);
+                stylesVote.put(style, ++orDefaultStyle);
             }
             infoTime.put(vote.getTime(), vote.getInfo());
 

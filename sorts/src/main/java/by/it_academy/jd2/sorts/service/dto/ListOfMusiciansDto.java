@@ -20,8 +20,8 @@ public class ListOfMusiciansDto {
         return musiciants;
     }
 
-    public void addMusiciants(String musiciants) {
-        this.musiciants.add(musiciants);
+    public void addMusiciants(String musiciant) {
+        musiciants.add(musiciant);
     }
 
     public boolean isExist(int index){

@@ -2,6 +2,7 @@ package by.it_academy.jd2.sorts.servlets;
 
 import by.it_academy.jd2.sorts.service.TopService;
 import by.it_academy.jd2.sorts.service.VoteService;
+import by.it_academy.jd2.sorts.service.dto.ListOfStylesDto;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +22,8 @@ public class TopStyles extends HttpServlet {
         TopService topService = new TopService();
         resp.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = resp.getWriter();
-        for (String topStyle : topService.getTop(VoteService.getVoteService().getStylesVote())) {
+        for (String topStyle : topService.getTop(VoteService.getVoteService().getStylesVote(),
+                ListOfStylesDto.getListOfStyles().getStyles())) {
             writer.write("<p>" + topStyle + "</p></br>" );
         }
     }

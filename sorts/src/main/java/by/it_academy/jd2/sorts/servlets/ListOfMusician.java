@@ -32,7 +32,10 @@ public class ListOfMusician extends HttpServlet {
     protected void doPost(HttpServletRequest req,
                           HttpServletResponse resp)
             throws ServletException, IOException {
+
         req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=utf-8");
+
         String musiciant = req.getParameter("musiciant");
         ListOfMusiciansDto service = ListOfMusiciansDto.getListOfMusicians();
         service.addMusiciants(musiciant);

@@ -9,18 +9,16 @@ import java.util.Map;
 
 public class TopService {
 
-    public List<String> getTop(Map<Integer, Integer> mapResults) {
-        Map<Integer, Integer> mapResultsMusicians =
-                VoteService.getVoteService().getMusicantsVote();
+    public List<String> getTop(Map<Integer, Integer> mapResults, List<String> list) {
 
         Sorts sorts = new Sorts();
-        List<Map.Entry<Integer, Integer>> entries = sorts.sortMap(mapResultsMusicians);
+        List<Map.Entry<Integer, Integer>> entries = sorts.sortMap(mapResults);
 
         List<String> result = new ArrayList<>();
-        List<String> musiciants = ListOfMusiciansDto.getListOfMusicians().getMusiciants();
+
 
         for (Map.Entry<Integer, Integer> entry : entries) {
-            result.add(musiciants.get(entry.getKey()) + " - " + entry.getValue() );
+            result.add(list.get(entry.getKey()) + " - " + entry.getValue() );
         }
         return result;
     }

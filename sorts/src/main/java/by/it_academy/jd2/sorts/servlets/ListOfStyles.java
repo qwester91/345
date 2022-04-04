@@ -33,6 +33,7 @@ public class ListOfStyles extends HttpServlet {
                           HttpServletResponse resp)
             throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=utf-8");
         String style = req.getParameter("style");
         ListOfStylesDto service = ListOfStylesDto.getListOfStyles();
         service.addStyles(style);

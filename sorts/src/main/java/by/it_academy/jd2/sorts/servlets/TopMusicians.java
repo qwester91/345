@@ -2,6 +2,7 @@ package by.it_academy.jd2.sorts.servlets;
 
 import by.it_academy.jd2.sorts.service.TopService;
 import by.it_academy.jd2.sorts.service.VoteService;
+import by.it_academy.jd2.sorts.service.dto.ListOfMusiciansDto;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +22,8 @@ public class TopMusicians extends HttpServlet {
         TopService topMusiciansService = new TopService();
         resp.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = resp.getWriter();
-        for (String topMusician : topMusiciansService.getTop(VoteService.getVoteService().getMusicantsVote())) {
+        for (String topMusician : topMusiciansService.getTop(VoteService.getVoteService().getMusicantsVote(),
+                ListOfMusiciansDto.getListOfMusicians().getMusiciants())) {
             writer.write("<p>" + topMusician + "</p></br>" );
         }
     }
