@@ -5,6 +5,7 @@ import by.it_academy.jd2.sorts.service.dto.VoteDto;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +29,5 @@ public class Vote extends HttpServlet {
         VoteDto vote = new VoteDto(musicians, styles, info, time);
         VoteService voteService = VoteService.getVoteService();
         voteService.save(vote);
-
-
     }
 }
