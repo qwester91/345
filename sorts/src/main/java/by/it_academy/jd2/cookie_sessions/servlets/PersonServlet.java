@@ -23,10 +23,16 @@ public class PersonServlet extends HttpServlet {
 
         String firstName = req.getParameter("firstName");
         String lastName = req.getParameter("lastName");
+        PrintWriter writer = resp.getWriter();
         int age = Integer.parseInt(req.getParameter("age"));
 
         String saveAs = req.getHeader("saveAs");
-        PersonService.save(firstName, lastName, age, resp, req, saveAs);
+
+        if (firstName != null && lastName != null && saveAs != null) {
+            PersonService.save(firstName, lastName, age, resp, req, saveAs);
+        } else{
+            writer.write("введены некорректные данные, сохранение невозможно");
+        }
 
     }
 
