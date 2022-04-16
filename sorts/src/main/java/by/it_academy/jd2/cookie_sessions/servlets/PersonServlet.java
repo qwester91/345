@@ -49,7 +49,7 @@ public class PersonServlet extends HttpServlet {
                 try {
                     writer.write(PersonService.load(req,saveAs).toString());
                 } catch (ClassNotFoundException e) {
-                    writer.write("чтото пошло не так");
+                    writer.write("чтото пошло не так" + e);
                 }
 
 
