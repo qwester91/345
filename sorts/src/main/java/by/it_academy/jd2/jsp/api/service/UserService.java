@@ -1,6 +1,7 @@
 package by.it_academy.jd2.jsp.api.service;
 
 import by.it_academy.jd2.jsp.api.core.dto.User;
+import by.it_academy.jd2.jsp.statistics.StatisticsService;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
@@ -10,7 +11,9 @@ import java.util.List;
 
 public class UserService {
     private List<User> listOfUsers;
-    private static UserService instance;
+    private final StatisticsService statisticsService = StatisticsService.getInstance();
+
+    private static final UserService instance = new UserService();
     private UserService() {
         listOfUsers = new ArrayList<>();
         User admin = new User("admin", "admin", "admin",LocalDate.now());
@@ -19,9 +22,7 @@ public class UserService {
     }
 
     public static UserService getInstance() {
-        if (instance==null){
-            instance = new UserService();
-        }
+
         return instance;
     }
 
@@ -32,19 +33,23 @@ public class UserService {
             }
         }
         listOfUsers.add(user);
+        statisticsService.addCountUser();
     }
 
     public void logIn(String login, String password, HttpSession session) throws IllegalAccessException {
+       boolean isLogin = false;
         for (User user : listOfUsers) {
-            if (user.getLogin().equals(login) && user.getPassword().equals(password)){
+            if (user.getLogin().equals(login)){
+                if(user.getPassword().equals(password)){
                 session.setAttribute("user", user);
-                return;
+                isLogin = true;
+                } else {
+                throw new IllegalAccessException("неверная пара логин/пароль");
+                }
+            }
         }
-//            else if(user.getLogin().equals(login) && !user.getPassword().equals(password)){
-//                throw new IllegalAccessException("неверная пара логин/пароль");
-//            } else if (!user.getLogin().equals(login)) {
-//                throw new IllegalAccessException("Пользователя с таким логином не существует");
-//            }
+        if (!isLogin){
+            throw new IllegalAccessException("Пользователя с таким логином не существует");
         }
     }
 
