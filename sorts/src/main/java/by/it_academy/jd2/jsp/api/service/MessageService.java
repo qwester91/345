@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MessageService implements IMessageService {
+
     private Map<User, List<Message>> messageMap;
 
     private final StatisticsService statisticsService = StatisticsService.getInstance();
@@ -46,4 +47,5 @@ public class MessageService implements IMessageService {
         }
         return messages;
     }
+
 }

@@ -54,19 +54,26 @@ public class MessengerServlet extends HttpServlet {
         PrintWriter writer = resp.getWriter();
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
-        if(user == null){
-            writer.write("кто ты такой чтобы писать сообщения? Залогинься!");
-        }
+        String redirect = req.getContextPath() + "/ui?mess=message send complete";
+
 
         String to = req.getParameter("to");
         String message1 = req.getParameter("message");
-        Message message = new Message(user.getLogin(), to, message1 );
+
 
         MessageService messageService = MessageService.getInstance();
         try {
-            messageService.sendMessage(message);
+            if(user == null){
+            redirect = req.getContextPath() + "/ui/user/message?mess=Who are you? signIn!!";
+             }else{
+                Message message = new Message(user.getLogin(), to, message1 );
+                messageService.sendMessage(message);
+             }
+
         } catch (ClassNotFoundException e) {
-            writer.write(e.getMessage() + e);
+            redirect = req.getContextPath() + "/ui/user/message?mess=" + e.getMessage();
+        }finally {
+            resp.sendRedirect(redirect);
         }
 
 

@@ -29,7 +29,7 @@ public class UserService {
     public void register (User user) throws IllegalAccessException {
         for (User users : listOfUsers) {
             if(user.getLogin().equals(users.getLogin())){
-                throw new IllegalAccessException("Пользователь с таким логином уже существует");
+                throw new IllegalAccessException("User with login " + user.getLogin() + ", already exist");
             }
         }
         listOfUsers.add(user);
@@ -44,12 +44,12 @@ public class UserService {
                 session.setAttribute("user", user);
                 isLogin = true;
                 } else {
-                throw new IllegalAccessException("неверная пара логин/пароль");
+                throw new IllegalAccessException("incorrect values of login/password");
                 }
             }
         }
         if (!isLogin){
-            throw new IllegalAccessException("Пользователя с таким логином не существует");
+            throw new IllegalAccessException("user with this login does not exist");
         }
     }
 
@@ -58,6 +58,6 @@ public class UserService {
            if (user.getLogin().equals(login))
                return user;
        }
-       throw new ClassNotFoundException("пользователя с логином " + login + " не существует");
+       throw new ClassNotFoundException("user with login " + login + " does not exist");
    }
 }

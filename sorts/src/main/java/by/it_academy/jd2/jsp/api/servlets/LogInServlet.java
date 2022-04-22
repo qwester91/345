@@ -24,10 +24,13 @@ public class LogInServlet extends HttpServlet {
         String password = req.getParameter("password");
         UserService userService = UserService.getInstance();
         PrintWriter writer = resp.getWriter();
+        String redirect = req.getContextPath() + "/ui?who=" + login;
         try {
           userService.logIn(login, password, req.getSession());
         } catch (IllegalAccessException e) {
-           writer.write( e.getMessage());
+           redirect = req.getContextPath() + "/ui/signIn?err=" + e.getMessage() ;
+        }finally {
+            resp.sendRedirect(redirect);
         }
 
     }
