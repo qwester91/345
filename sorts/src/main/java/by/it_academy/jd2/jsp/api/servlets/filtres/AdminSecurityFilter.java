@@ -1,5 +1,6 @@
 package by.it_academy.jd2.jsp.api.servlets.filtres;
 
+import by.it_academy.jd2.jsp.api.core.dto.Roles;
 import by.it_academy.jd2.jsp.api.core.dto.User;
 
 import javax.servlet.*;
@@ -29,7 +30,7 @@ public class AdminSecurityFilter implements Filter {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         if((session != null) && (user != null)){
-            if(user.getRole().equals("admin")){
+            if(user.getRole().equals(Roles.ADMIN)){
             filterChain.doFilter(servletRequest, servletResponse);
             }
         } else {

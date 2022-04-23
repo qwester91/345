@@ -26,23 +26,34 @@ public class RegistrationServlet extends HttpServlet {
             throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=utf-8");
-
+        String emty = "";
+        String redirect = req.getContextPath() + "/ui?reg=registration complete";
         String login = req.getParameter(LOGIN_PARAM);
         String password = req.getParameter(PASSWORD_PARAM);
         String name = req.getParameter(NAME_PARAM);
         String dateOfBirth = req.getParameter(DATE_OF_BIRTH_PARAM);
-        LocalDate date = LocalDate.parse(dateOfBirth);
-        String redirect = req.getContextPath() + "/ui?reg=registration complete";
+        LocalDate date = null;
+        if (!emty.equals(dateOfBirth)) {
+            date = LocalDate.parse(dateOfBirth);
+        }
+        User user = null;
 
-        User user = new User(login, password, name, date);
-        PrintWriter writer = resp.getWriter();
+        if(emty.equals(login) || emty.equals(password) || emty.equals(name) || emty.equals(dateOfBirth)){
+            redirect = req.getContextPath() + "/ui/signUp?err=all fields must be filled";
+        } else {
+             user = new User(login, password, name, date);
+        }
+
+
+
 
         UserService userService = UserService.getInstance();
         try {
+            if(user != null){
             userService.register(user);
+            }
         } catch (IllegalAccessException e) {
            redirect = req.getContextPath() + "/ui/signUp?err=" + e.getMessage();
-           writer.write( e.getMessage());
         } finally {
             resp.sendRedirect(redirect);
         }

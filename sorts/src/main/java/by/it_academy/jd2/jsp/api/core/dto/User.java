@@ -9,7 +9,7 @@ public class User {
     private String name;
     private LocalDate dateOfBirth;
     private LocalDateTime dateOfRegistration;
-    private String role;
+    private Roles role;
 
     public User() {
     }
@@ -20,7 +20,7 @@ public class User {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.dateOfRegistration = LocalDateTime.now();
-        this.role = "user";
+        this.role = Roles.USER;
     }
 
     public String getLogin() {
@@ -63,11 +63,11 @@ public class User {
         this.dateOfRegistration = dateOfRegistration;
     }
 
-    public String getRole() {
+    public Roles getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Roles role) {
         this.role = role;
     }
 }

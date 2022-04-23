@@ -18,6 +18,11 @@ import java.util.List;
 
 @WebServlet(name = "MessengerServlet", urlPatterns = "/api/message")
 public class MessengerServlet extends HttpServlet {
+    private final String SESSION_ATRIBUTE = "user";
+
+    private final String TO_PARAM = "to";
+    private final String MESSAGE_PARAM = "message";
+
     @Override
     protected void doGet(HttpServletRequest req,
                          HttpServletResponse resp)
@@ -26,7 +31,7 @@ public class MessengerServlet extends HttpServlet {
         resp.setContentType("text/html; charset=utf-8");
         PrintWriter writer = resp.getWriter();
         HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute(SESSION_ATRIBUTE);
         if(user == null){
             writer.write("кто ты такой чтобы читать сообщения? Залогинься!");
             return;
@@ -51,14 +56,13 @@ public class MessengerServlet extends HttpServlet {
             throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=utf-8");
-        PrintWriter writer = resp.getWriter();
         HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute(SESSION_ATRIBUTE);
         String redirect = req.getContextPath() + "/ui?mess=message send complete";
 
 
-        String to = req.getParameter("to");
-        String message1 = req.getParameter("message");
+        String to = req.getParameter(TO_PARAM);
+        String message1 = req.getParameter(MESSAGE_PARAM);
 
 
         MessageService messageService = MessageService.getInstance();

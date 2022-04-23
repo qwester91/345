@@ -13,6 +13,9 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "LogInServlet", urlPatterns = "/api/login")
 public class LogInServlet extends HttpServlet {
+    private final String LOGIN_PARAM = "login";
+
+    private final String PASSWORD_PARAM = "password";
     @Override
     protected void doPost(HttpServletRequest req,
                           HttpServletResponse resp)
@@ -20,8 +23,8 @@ public class LogInServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=utf-8");
 
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
+        String login = req.getParameter(LOGIN_PARAM);
+        String password = req.getParameter(PASSWORD_PARAM);
         UserService userService = UserService.getInstance();
         PrintWriter writer = resp.getWriter();
         String redirect = req.getContextPath() + "/ui?who=" + login;
@@ -34,10 +37,12 @@ public class LogInServlet extends HttpServlet {
         }
 
     }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        session.removeAttribute("user");
-    }
+/**
+ * для проверки логаута и подсчета пользователей
+ */
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        HttpSession session = req.getSession();
+//        session.removeAttribute("user");
+//    }
 }

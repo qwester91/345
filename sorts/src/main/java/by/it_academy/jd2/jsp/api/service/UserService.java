@@ -1,5 +1,6 @@
 package by.it_academy.jd2.jsp.api.service;
 
+import by.it_academy.jd2.jsp.api.core.dto.Roles;
 import by.it_academy.jd2.jsp.api.core.dto.User;
 import by.it_academy.jd2.jsp.statistics.StatisticsService;
 
@@ -17,7 +18,7 @@ public class UserService {
     private UserService() {
         listOfUsers = new ArrayList<>();
         User admin = new User("admin", "admin", "admin",LocalDate.now());
-        admin.setRole("admin");
+        admin.setRole(Roles.ADMIN);
         listOfUsers.add(admin);
     }
 
